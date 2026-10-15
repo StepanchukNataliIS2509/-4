@@ -1,0 +1,50 @@
+kukuruza@Surikat:~$ mkdir -p ~/lab4 && cd ~/lab4
+kukuruza@Surikat:~/lab4$ cd ~/lab4
+vim lab4.sh
+
+kukuruza@Surikat:~/lab4$ chmod +x lab4.sh
+kukuruza@Surikat:~/lab4$ mkdir -p test/sub && cd test
+printf '1\n2.5\nabc\n-3\n' > a.txt
+printf '#REPORT\nстрока 1\nстрока 2\n' > b.log
+printf 'x' > "sub/one byte.txt"
+: > empty.txt
+cd ..
+kukuruza@Surikat:~/lab4$ ./lab4.sh -r '\.txt$' -a 1
+  ./test/a.txt — 13 байт
+  ./test/empty.txt — 0 байт
+  ./test/sub/one byte.txt — 1 байт
+Найдено файлов: 3
+Суммарный размер: 14 байт
+Средний размер: 4.66667 байт
+kukuruza@Surikat:~/lab4$ ./lab4.sh -r '\.txt$' -a 2
+Всего строк: 4
+В среднем: 1.33 строк
+kukuruza@Surikat:~/lab4$ ./lab4.sh -r '\.txt$' -a 3
+Чисел: 3, сумма: 0.500000
+kukuruza@Surikat:~/lab4$ ./lab4.sh -r '\.log$' -a 4
+=== ./test/b.log ===
+     1  #REPORT
+     2  строка 1
+     3  строка 2
+
+kukuruza@Surikat:~/lab4$ ./lab4.sh -r '\.txt$' -a 5
+./test/a.txt: 628
+./test/empty.txt: 0
+./test/sub/one byte.txt: 120
+Всего: 748
+kukuruza@Surikat:~/lab4$ ./lab4.sh -r '\.txt$' -a 6
+./test/a.txt: 58003
+./test/empty.txt: 0
+./test/sub/one byte.txt: 120
+Всего: 58123
+kukuruza@Surikat:~/lab4$ ./lab4.sh -n a.txt b.log -a 1
+  ./test/a.txt — 13 байт
+  ./test/b.log — 38 байт
+Найдено файлов: 2
+Суммарный размер: 51 байт
+Средний размер: 25.5 байт
+kukuruza@Surikat:~/lab4$ ./lab4.sh -n a.txt b.log -a 2
+Всего строк: 7
+В среднем: 3.50 строк
+kukuruza@Surikat:~/lab4$  vim lab4.sh
+kukuruza@Surikat:~/lab4$
